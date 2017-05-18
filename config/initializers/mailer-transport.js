@@ -9,7 +9,7 @@ export default {
     // See https://github.com/nodemailer/nodemailer#send-using-a-transport-plugin
     let mailConfig = application.config.mailer;
     let transport = nodemailer.createTransport(result(mailConfig, 'transport'));
-    application.container.register('mailer-transport:application', transport);
+    application.container.register('mailer-transport:application', transport, { singleton: true, instantiate: false });
   }
 };
 
