@@ -1,0 +1,19 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _denali = require('denali');
+
+class MailerService extends _denali.Service {
+
+  send(name, data) {
+    let Mailer = this.container.factoryFor('mailer:' + name + '/mailer');
+    let mailer = Mailer.create(name, this.container);
+    return mailer.send(data);
+  }
+
+}
+exports.default = MailerService;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9zZXJ2aWNlcy9tYWlsZXIuanMiXSwibmFtZXMiOlsiTWFpbGVyU2VydmljZSIsInNlbmQiLCJuYW1lIiwiZGF0YSIsIk1haWxlciIsImNvbnRhaW5lciIsImZhY3RvcnlGb3IiLCJtYWlsZXIiLCJjcmVhdGUiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBOztBQUVlLE1BQU1BLGFBQU4seUJBQW9DOztBQUVqREMsT0FBS0MsSUFBTCxFQUFXQyxJQUFYLEVBQWlCO0FBQ2YsUUFBSUMsU0FBUyxLQUFLQyxTQUFMLENBQWVDLFVBQWYsYUFBcUNKLElBQXJDLGFBQWI7QUFDQSxRQUFJSyxTQUFTSCxPQUFPSSxNQUFQLENBQWNOLElBQWQsRUFBb0IsS0FBS0csU0FBekIsQ0FBYjtBQUNBLFdBQU9FLE9BQU9OLElBQVAsQ0FBWUUsSUFBWixDQUFQO0FBQ0Q7O0FBTmdEO2tCQUE5QkgsYSIsImZpbGUiOiJhcHAvc2VydmljZXMvbWFpbGVyLmpzIiwic291cmNlUm9vdCI6Ii9Vc2Vycy9hY2J1cmRpbmUvUHJvamVjdHMvZGVuYWxpL2RlbmFsaS1tYWlsZXIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBTZXJ2aWNlIH0gZnJvbSAnZGVuYWxpJztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgTWFpbGVyU2VydmljZSBleHRlbmRzIFNlcnZpY2Uge1xuXG4gIHNlbmQobmFtZSwgZGF0YSkge1xuICAgIGxldCBNYWlsZXIgPSB0aGlzLmNvbnRhaW5lci5mYWN0b3J5Rm9yKGBtYWlsZXI6JHsgbmFtZSB9L21haWxlcmApO1xuICAgIGxldCBtYWlsZXIgPSBNYWlsZXIuY3JlYXRlKG5hbWUsIHRoaXMuY29udGFpbmVyKTtcbiAgICByZXR1cm4gbWFpbGVyLnNlbmQoZGF0YSk7XG4gIH1cblxufVxuIl19

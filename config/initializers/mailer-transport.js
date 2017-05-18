@@ -1,0 +1,36 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _nodemailer = require('nodemailer');
+
+var _nodemailer2 = _interopRequireDefault(_nodemailer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'mailer-transport',
+  initialize: function (application) {
+    // You can define the configuration object at config.mailer.transport,
+    // and rely on nodemailer's dynamic plugin loading. The config.mailer.transport
+    // is a function it will be executed and it's return value used.
+    // See https://github.com/nodemailer/nodemailer#send-using-a-transport-plugin
+    let mailConfig = application.config.mailer;
+    let transport = _nodemailer2.default.createTransport(result(mailConfig, 'transport'));
+    application.container.register('mailer-transport:application', transport, { singleton: true, instantiate: false });
+  }
+};
+
+
+function result(obj, prop, ...args) {
+  let value = obj[prop];
+  if (typeof value === 'function') {
+    var _value;
+
+    value = (_value = value).call.apply(_value, [obj].concat(args));
+  }
+  return value;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbmZpZy9pbml0aWFsaXplcnMvbWFpbGVyLXRyYW5zcG9ydC5qcyJdLCJuYW1lcyI6WyJuYW1lIiwiaW5pdGlhbGl6ZSIsImFwcGxpY2F0aW9uIiwibWFpbENvbmZpZyIsImNvbmZpZyIsIm1haWxlciIsInRyYW5zcG9ydCIsImNyZWF0ZVRyYW5zcG9ydCIsInJlc3VsdCIsImNvbnRhaW5lciIsInJlZ2lzdGVyIiwic2luZ2xldG9uIiwiaW5zdGFudGlhdGUiLCJvYmoiLCJwcm9wIiwiYXJncyIsInZhbHVlIiwiY2FsbCJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7Ozs7OztrQkFFZTtBQUNiQSxRQUFNLGtCQURPO0FBRWJDLFlBRmEsWUFFRkMsV0FGRSxFQUVXO0FBQ3RCO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsUUFBSUMsYUFBYUQsWUFBWUUsTUFBWixDQUFtQkMsTUFBcEM7QUFDQSxRQUFJQyxZQUFZLHFCQUFXQyxlQUFYLENBQTJCQyxPQUFPTCxVQUFQLEVBQW1CLFdBQW5CLENBQTNCLENBQWhCO0FBQ0FELGdCQUFZTyxTQUFaLENBQXNCQyxRQUF0QixDQUErQiw4QkFBL0IsRUFBK0RKLFNBQS9ELEVBQTBFLEVBQUVLLFdBQVcsSUFBYixFQUFtQkMsYUFBYSxLQUFoQyxFQUExRTtBQUNEO0FBVlksQzs7O0FBYWYsU0FBU0osTUFBVCxDQUFnQkssR0FBaEIsRUFBcUJDLElBQXJCLEVBQTJCLEdBQUdDLElBQTlCLEVBQW9DO0FBQ2xDLE1BQUlDLFFBQVFILElBQUlDLElBQUosQ0FBWjtBQUNBLE1BQUksT0FBT0UsS0FBUCxLQUFpQixVQUFyQixFQUFpQztBQUFBOztBQUMvQkEsWUFBUSxpQkFBTUMsSUFBTixnQkFBV0osR0FBWCxTQUFtQkUsSUFBbkIsRUFBUjtBQUNEO0FBQ0QsU0FBT0MsS0FBUDtBQUNEIiwiZmlsZSI6ImNvbmZpZy9pbml0aWFsaXplcnMvbWFpbGVyLXRyYW5zcG9ydC5qcyIsInNvdXJjZVJvb3QiOiIvVXNlcnMvYWNidXJkaW5lL1Byb2plY3RzL2RlbmFsaS9kZW5hbGktbWFpbGVyIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IG5vZGVtYWlsZXIgZnJvbSAnbm9kZW1haWxlcic7XG5cbmV4cG9ydCBkZWZhdWx0IHtcbiAgbmFtZTogJ21haWxlci10cmFuc3BvcnQnLFxuICBpbml0aWFsaXplKGFwcGxpY2F0aW9uKSB7XG4gICAgLy8gWW91IGNhbiBkZWZpbmUgdGhlIGNvbmZpZ3VyYXRpb24gb2JqZWN0IGF0IGNvbmZpZy5tYWlsZXIudHJhbnNwb3J0LFxuICAgIC8vIGFuZCByZWx5IG9uIG5vZGVtYWlsZXIncyBkeW5hbWljIHBsdWdpbiBsb2FkaW5nLiBUaGUgY29uZmlnLm1haWxlci50cmFuc3BvcnRcbiAgICAvLyBpcyBhIGZ1bmN0aW9uIGl0IHdpbGwgYmUgZXhlY3V0ZWQgYW5kIGl0J3MgcmV0dXJuIHZhbHVlIHVzZWQuXG4gICAgLy8gU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9ub2RlbWFpbGVyL25vZGVtYWlsZXIjc2VuZC11c2luZy1hLXRyYW5zcG9ydC1wbHVnaW5cbiAgICBsZXQgbWFpbENvbmZpZyA9IGFwcGxpY2F0aW9uLmNvbmZpZy5tYWlsZXI7XG4gICAgbGV0IHRyYW5zcG9ydCA9IG5vZGVtYWlsZXIuY3JlYXRlVHJhbnNwb3J0KHJlc3VsdChtYWlsQ29uZmlnLCAndHJhbnNwb3J0JykpO1xuICAgIGFwcGxpY2F0aW9uLmNvbnRhaW5lci5yZWdpc3RlcignbWFpbGVyLXRyYW5zcG9ydDphcHBsaWNhdGlvbicsIHRyYW5zcG9ydCwgeyBzaW5nbGV0b246IHRydWUsIGluc3RhbnRpYXRlOiBmYWxzZSB9KTtcbiAgfVxufTtcblxuZnVuY3Rpb24gcmVzdWx0KG9iaiwgcHJvcCwgLi4uYXJncykge1xuICBsZXQgdmFsdWUgPSBvYmpbcHJvcF07XG4gIGlmICh0eXBlb2YgdmFsdWUgPT09ICdmdW5jdGlvbicpIHtcbiAgICB2YWx1ZSA9IHZhbHVlLmNhbGwob2JqLCAuLi5hcmdzKTtcbiAgfVxuICByZXR1cm4gdmFsdWU7XG59XG4iXX0=
